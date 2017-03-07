@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	
+	<!-- spring IOC -->
+	<bean id="useBean" class="ioc.UseBean">
+		<property name="helloBean" ref="helloBeanEN"></property>
+	</bean>
+	<bean id="helloBeanEN" class="ioc.HelloBeanEN"></bean>
+	<bean id="helloBeanZH" class="ioc.HelloBeanZH"></bean>
+	
+	<!-- spring IOC 默认：创建时机是启动时加载 创建模式scop为单例singleton   初始化和销毁可以配置-->
+<!-- 	<bean id="myBean" class="ioc.MyBean" scope="singleton" lazy-init="false" ></bean> -->
+<!-- 	<bean id="myBean" class="ioc.MyBean" scope="prototype" ></bean> -->
+<!-- 	<bean id="myBean" class="ioc.MyBean"  lazy-init="true" ></bean> -->
+	<bean id="myBean" class="ioc.MyBean"  init-method="myinit" destroy-method="mydestroy"></bean>
+	
+	<!-- ioc的DI  -->
+	<bean id="DI" class="ioc.MyIOC_DI">
+		<constructor-arg index="0" value="张三"></constructor-arg>
+		<property name="list">
+			<list>
+				<value>list1</value>
+				<value>list2</value>
+			</list>
+		</property>
+		<property name="set">
+			<set>
+				<value>set1</value>
+				<value>set2</value>
+			</set>
+		</property>
+		<property name="map">
+			<map>
+				<entry key="mapkey1" value="mapvalue1"></entry>
+				<entry key="mapkey2" value="mapvalue2"></entry>
+			</map>
+		</property>
+		<property name="props">
+			<props>
+				<prop key="url">url-jdbc</prop>
+				<prop key="password">pwd-jdbc</prop>
+			</props>
+		</property>
+	</bean>
+	
+</beans>
+
+

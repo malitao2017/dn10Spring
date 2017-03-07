@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	
+	<!-- spring对jdbc的支持 , spring的处理类中有默认的结束方法，可节省资源-->
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
+		<!-- 数据库连接的信息 -->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/test"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+		<!-- 连接池 对connection的数量等进行控制-->
+		<property name="maxActive" value="10"></property>
+		<property name="initialSize" value="2"></property>
+		<property name="minIdle" value="2"></property>
+		<property name="maxIdle" value="3"></property>
+	</bean>
+	<!-- 对应的dao访问 -->
+	<bean id="jdbcUserDao" class="dao.jdbc.JdbcUserDao">
+		<property name="dataSource" ref="myDataSource"></property>
+	</bean>
+	
+	<!-- spring对hibernate的支持 -->
+	<bean id="mySessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource"></property>
+		<property name="mappingResources">
+			<list>
+				<value>dao/hibernate/User.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">false</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 对应的hibernate的访问 -->
+	<bean id="hibernateUserDao" class="dao.hibernate.HibernateUserDao">
+		<property name="sessionFactory" ref="mySessionFactory"></property>
+	</bean>
+	
+</beans>
+
+

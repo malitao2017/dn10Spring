@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	
+	<!-- spring AOP 的注解形式 -->
+	<context:component-scan base-package="aop.annotation"></context:component-scan>
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	<!-- spring AOP -->
+<!-- 	<bean id="userService" class="aop.UserServiceImpl"></bean> -->
+<!-- 	<bean id="optLogger" class="aop.OptLogger"></bean> -->
+<!-- 	<aop:config> -->
+<!-- 		<aop:pointcut id="aopPointcut" expression="execution (* aop.*.*(..))"  /> -->
+<!-- 		<aop:aspect id="aopAspect" ref="optLogger"> -->
+<!-- 			<aop:around method="loggerAround" pointcut-ref="aopPointcut"/> -->
+<!-- 			<aop:before method="loggerBefore" pointcut-ref="aopPointcut"/> -->
+<!-- 			<aop:after-returning method="loggerAfterReturn" pointcut-ref="aopPointcut" returning="reVal"/> -->
+<!-- 			<aop:after-throwing method="loggerAfterThrow" pointcut-ref="aopPointcut" throwing="ex"/> -->
+<!-- 			<aop:after method="loggerAfter" pointcut-ref="aopPointcut" /> -->
+<!-- 		</aop:aspect> -->
+<!-- 	</aop:config> -->
+	
+</beans>
+
+
