@@ -3,7 +3,7 @@
  * Copyright: TsingSoft (c) 2015
  * Company: 北京清软创新科技有限公司
  */
-package spring;
+package springtest;
 
 import ioc.HelloBeanEN;
 import ioc.MyBean;
@@ -34,10 +34,10 @@ import aopAutoProxy.ProxyServiceImpl;
  * @author LT
  * @version 1.0, 2015年10月22日
  */
-public class Base {
+public class Test {
 	
 	public static void main(String[] args) throws Exception {
-		Base base = new Base();
+		Test base = new Test();
 		/**
 		 * 基础特性
 		 */
